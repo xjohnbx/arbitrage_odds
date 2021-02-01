@@ -4,12 +4,13 @@ class Data():
 	def __init__(self, success, data=None):
 		if data is not None:
 			dataCollection = []
-			for event in data:
-				dataCollection.append(Event(**event))
+			for game in data:
+				dataCollection.append(Game(**game))
+			self.data = dataCollection
 		
 		self.success = success
 			
-class Event():
+class Game():
 	def __init__(self, commence_time, home_team, sites, sites_count, sport_key, sport_nice, teams):
 		self.commence_time = commence_time
 		self.home_team	= home_team
@@ -26,8 +27,9 @@ class Event():
 		
 		
 class Odds():
-	def __init__(self, h2h):
-		self.h2h = h2h
+	def __init__(self, h2h, h2h_lay=None):
+		self.h2h = h2h # Note: h2h is an arary of odds - HomeTeam first then AwayTeam
+		self.h2h_lay = h2h_lay
 		
 class Site():
 	def __init__(self, last_update, odds, site_key, site_nice):
@@ -35,5 +37,3 @@ class Site():
 		self.odds = Odds(**odds)
 		self.site_key = site_key
 		self.site_nice = site_nice
-		
-		
